@@ -1,31 +1,112 @@
 .event {
   max-width: 50rem;
-  margin: 2rem auto;
+  margin: var(--space-2xl) auto;
   text-align: center;
+  background-color: rgba(38, 38, 38, 0.7);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.event:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
 }
 
 .event img {
-  width: 30rem;
-  border-radius: 4px;
+  width: 100%;
+  max-height: 25rem;
+  object-fit: cover;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transition: all var(--transition-normal);
+}
+
+.event:hover img {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.event h1 {
+  margin-top: var(--space-lg);
+  color: var(--color-primary-300);
+  font-size: 1.8rem;
+}
+
+.event time {
+  display: block;
+  color: var(--color-gray-300);
+  margin: var(--space-sm) 0 var(--space-lg);
+  font-style: italic;
+}
+
+.event p {
+  padding: 0 var(--space-xl);
+  margin-bottom: var(--space-xl);
+  color: var(--color-gray-200);
 }
 
 .actions {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-md);
   justify-content: center;
   align-items: center;
+  padding: var(--space-lg);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .actions a,
 .actions button {
-  padding: 0.25rem 1rem;
+  padding: var(--space-sm) var(--space-lg);
   text-decoration: none;
   font: inherit;
+  font-weight: 600;
   cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.actions a {
+  background-color: var(--color-primary-600);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.actions a:hover {
+  background-color: var(--color-primary-500);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.actions a:active {
+  transform: translateY(0);
 }
 
 .actions button {
   background-color: transparent;
-  border: none;
-  color: var(--color-primary-800);
+  border: 1px solid var(--color-primary-600);
+  color: var(--color-primary-400);
+}
+
+.actions button:hover {
+  background-color: rgba(45, 212, 191, 0.1);
+  color: var(--color-primary-300);
+}
+
+@media (max-width: 768px) {
+  .event {
+    margin: var(--space-xl) var(--space-md);
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .actions a,
+  .actions button {
+    width: 100%;
+  }
 }

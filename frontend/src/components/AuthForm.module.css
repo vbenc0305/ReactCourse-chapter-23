@@ -1,48 +1,107 @@
 .form {
   max-width: 40rem;
-  margin: 2rem auto;
+  margin: var(--space-2xl) auto;
+  background-color: rgba(38, 38, 38, 0.7);
+  padding: var(--space-xl);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.form label,
+.form h1 {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  color: var(--color-primary-300);
+}
+
+.form label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-weight: 500;
+  color: var(--color-gray-200);
+}
+
 .form input,
 .form textarea {
   display: block;
   width: 100%;
+  font: inherit;
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: var(--color-gray-100);
+  transition: all var(--transition-fast);
 }
 
-.form input,
-.form textarea {
-  font: inherit;
-  padding: 0.25rem;
+.form input:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.25);
 }
 
 .actions {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-md);
   justify-content: flex-end;
   align-items: center;
+  margin-top: var(--space-xl);
 }
 
 .actions button {
   font: inherit;
+  font-weight: 600;
   cursor: pointer;
-  padding: 0.5rem 1.5rem;
-  border-radius: 4px;
-  background-color: var(--color-gray-300);
-  color: var(--color-gray-800);
+  padding: var(--space-sm) var(--space-xl);
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-600);
+  color: white;
   border: none;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
 .actions a {
   text-decoration: none;
   background-color: transparent;
   color: var(--color-gray-300);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
 }
 
 .actions button:hover {
-  background-color: var(--color-primary-300);
+  background-color: var(--color-primary-500);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.actions button:active {
+  transform: translateY(0);
 }
 
 .actions a:hover {
-  background-color: var(--color-gray-800);
+  color: var(--color-primary-300);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .form {
+    padding: var(--space-lg);
+    margin: var(--space-xl) var(--space-md);
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+    gap: var(--space-sm);
+  }
+
+  .actions button,
+  .actions a {
+    width: 100%;
+    text-align: center;
+  }
 }
