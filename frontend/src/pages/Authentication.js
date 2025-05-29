@@ -1,5 +1,7 @@
 import AuthForm from '../components/AuthForm';
-import {json, redirect} from "react-router-dom";
+import {redirect} from "react-router-dom";
+
+
 
 function AuthenticationPage() {
   return <AuthForm />;
@@ -12,7 +14,13 @@ export async function action({ request }) {
     const mode = params.get('mode') || 'login';
 
     if(mode !== 'login' && mode !== 'signup'){
-        throw json({message: 'Invalid mode'}, { status: 422})
+        throw new Response(
+            JSON.stringify({ message: 'Invalid mode' }),
+            {
+                status: 422,
+                headers: { 'Content-Type': 'application/json' }
+            }
+        );
     }
 
     const formData = await request.formData();
@@ -34,9 +42,23 @@ export async function action({ request }) {
         return response;
     }
 
-    if(!response.ok){
-        throw json({message: 'Could not authenticate user'}, {status: 500});
+    if (!response.ok) {
+        throw new Response(
+            JSON.stringify({ message: 'Could not authenticate user' }),
+            {
+                status: 500,
+                headers: { 'Content-Type': 'application/json' }
+            }
+        );
     }
+
+    const responseData = await response.json();
+    const token = responseData.token;
+
+    localStorage.setItem('token', token);
+    const expiration = new Date();
+    expiration.setHours(expiration.getHours() + 1);
+    localStorage.setItem('expiration', expiration.toISOString());
 
     //soon manage that token
     return redirect('/');

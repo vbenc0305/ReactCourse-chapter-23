@@ -22,6 +22,22 @@
   color: var(--color-gray-200);
 }
 
+.toggle {
+  background-color: transparent;
+  color: var(--color-primary-400);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.toggle:hover {
+  color: var(--color-primary-200);
+  background-color: rgba(45, 212, 191, 0.08);
+}
+
 .form input,
 .form textarea {
   display: block;
